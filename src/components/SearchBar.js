@@ -8,6 +8,9 @@ export default function SearchBar(props) {
   }
 
   // create handleCheckboxChange that is gonna call the function that you are sending as a props from the parent.
+  function handleCheckboxChange() {
+    props.handleCheckbox();
+  }
 
   return (
     <div>
@@ -22,7 +25,9 @@ export default function SearchBar(props) {
         type="checkbox"
         name="checkedbox"
         // add propriety checked and assign as a value the value that you are sending as a propos from the parent
+        value={props.checkbox}
         // add onChange that is gonna call a handleCheckboxChange
+        onChange={handleCheckboxChange}
       />
       <label htmlFor="checkbox">Only show products on stock</label>
     </div>

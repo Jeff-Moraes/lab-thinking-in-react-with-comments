@@ -4,7 +4,14 @@ import ProductRow from './ProductRow';
 
 export default function ProductTable(props) {
   const filteredProductList = props.productList.filter((product) => {
-    if (product.name.toLowerCase().includes(props.query.toLowerCase())) {
+    if (props.checkbox) {
+      if (
+        product.name.toLowerCase().includes(props.query.toLowerCase()) &&
+        product.stocked
+      ) {
+        return product;
+      }
+    } else if (product.name.toLowerCase().includes(props.query.toLowerCase())) {
       return product;
     }
   });
@@ -21,7 +28,12 @@ export default function ProductTable(props) {
         <tbody>
           {filteredProductList.map((item) => {
             return (
-              <ProductRow key={item.name} name={item.name} price={item.price} />
+              <ProductRow
+                key={item.name}
+                name={item.name}
+                price={item.price}
+                stocked={item.stocked}
+              />
             );
           })}
         </tbody>
